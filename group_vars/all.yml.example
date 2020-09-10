@@ -1,0 +1,5 @@
+mail_server: mail.example.com
+mail_port: 25
+report_recipients:
+  - you@example.com
+  - someoneelse@example.com

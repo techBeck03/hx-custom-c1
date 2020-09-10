@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        font-family: 'Helvetica', sans-serif;
+    }
+
+    div.row {
+        width: 100%;
+        padding: 4px;
+        font-size: 14px;
+    }
+
+    h1.section--heading {
+        margin-bottom: 5px;
+        font-size: 18px;
+        color: #2786D9;
+        text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    table tbody tr td:first-child {
+        width: 260px;
+        /* font-weight: bold; */
+    }
+
+    table tbody tr:nth-child(odd) {
+        background: #c6c6c6a3;
+    }
+
+    table tbody tr {
+        display: block;
+        min-width: 530px;
+        width: 530px;
+    }
+
+    td.emphasis {
+        color: #FB8C00;
+    }
+
+    .wrapper {
+        width: 500px;
+    }
+
+    .progress-bar {
+        width: 100%;
+        background-color: #e0e0e0;
+        padding: 3px;
+        border-radius: 3px;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, .2);
+    }
+
+    .progress-bar-fill {
+        display: block;
+        height: 10px;
+        background-color: #659cef;
+        border-radius: 3px;
+
+        transition: width 500ms ease-in-out;
+    }
+    table {
+        border: none;
+    }
+    progress {
+        margin-right: 4px;
+    }
+</style>
+
+<body>
+    <div class="row">
+        <h1 class="section--heading">CLUSTER INFO</h1>
+    </div>
+    <div class="row">
+        <table cellspacing="0" cellpadding="5">
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td>{{ summary.name }}</td>
+                </tr>
+                <tr>
+                    <td>Status</td>
+                    <td>{{summary.state}}</td>
+                </tr>
+                <tr>
+                    <td>Health State</td>
+                    <td>{{info.healthState}}</td>
+                </tr>
+                <tr>
+                    <td>Uptime</td>
+                    <td>{{summary.uptime}}</td>
+                </tr>
+                <tr>
+                    <td>Version</td>
+                    <td>{{info.displayVersion}}</td>
+                </tr>
+                <tr>
+                    <td>CRM Master</td>
+                    <td class="emphasis">{{ master }}</td>
+                </tr>
+                <tr>
+                    <td>Compression Savings</td>
+                    <td><progress max="100" value="{{summary.compressionSavings.split('%')[0]}}"></progress><span class="progress-label">{{summary.compressionSavings}}</span></td>
+                </tr>
+                <tr>
+                    <td>Deduplication Savings</td>
+                    <td><progress max="100" value="{{summary.deduplicationSavings.split('%')[0]}}"></progress><span class="progress-label">{{summary.deduplicationSavings }}</span></td>
+                </tr>
+                <tr>
+                    <td>Node Failures Tolerable</td>
+                    <td>{{summary.resiliencyInfo.nodeFailuresTolerable}}</td>
+                </tr>
+                <tr>
+                    <td>Caching Device Failures Tolerable</td>
+                    <td>{{summary.resiliencyInfo.cachingDeviceFailuresTolerable}}</td>
+                </tr>
+                <tr>
+                    <td>Persistent Device Failures Tolerable</td>
+                    <td>{{summary.resiliencyInfo.persistentDeviceFailuresTolerable}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <h1 class="section--heading">CAPACITY AND REPLICATION</h1>
+    </div>
+    <div class="row">
+        <table cellspacing="0" cellpadding="5">
+            <tbody>
+                <tr>
+                    <td>Free Capacity</td>
+                    <td>{{summary.freeCapacity}}</td>
+                </tr>
+                <tr>
+                    <td>Total Capacity</td>
+                    <td>{{summary.totalCapacity}}</td>
+                </tr>
+                <tr>
+                    <td>Total Savings</td>
+                    <td><progress max="100" value="{{summary.totalSavings.split('%')[0]}}"></progress><span class="progress-label">{{summary.totalSavings}}</span></td>
+                </tr>
+                <tr>
+                    <td>Used Capacity</td>
+                    <td>{{summary.usedCapacity}}</td>
+                </tr>
+                <tr>
+                    <td>Data Replication Compliance</td>
+                    <td>{{summary.dataReplicationCompliance}}</td>
+                </tr>
+                <tr>
+                    <td>Data Replication Factor</td>
+                    <td>{{summary.dataReplicationFactor}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <h1 class="section--heading">REBALANCE STATUS</h1>
+    </div>
+    <div class="row">
+        <table cellspacing="0" cellpadding="5">
+            <tbody>
+                <tr>
+                    <td>Percent Complete</td>
+                    <td>{{rebalance.rebalanceStatus.percentComplete}}</td>
+                </tr>
+                <tr>
+                    <td>State</td>
+                    <td>{{rebalance.rebalanceStatus.rebalanceState}}</td>
+                </tr>
+                <tr>
+                    <td>Enabled</td>
+                    <td>{{rebalance.rebalanceEnabled}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

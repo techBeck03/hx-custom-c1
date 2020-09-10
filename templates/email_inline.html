@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+
+<body style="font-family: 'Helvetica', sans-serif;">
+    <div class="row" style="width: 100%; padding: 4px; font-size: 14px;">
+        <h1 class="section--heading" style="margin-bottom: 5px; font-size: 18px; color: #2786D9; text-shadow: 0px 1px rgba(0, 0, 0, 0.2);">CLUSTER INFO</h1>
+    </div>
+    <div class="row" style="width: 100%; padding: 4px; font-size: 14px;">
+        <table cellspacing="0" cellpadding="5" style="border: none;">
+            <tbody>
+                <tr style="display: block; min-width: 530px; width: 530px; background: #c6c6c6a3;">
+                    <td style="width: 260px;" width="260">Name</td>
+                    <td>{{ summary.name }}</td>
+                </tr>
+                <tr style="display: block; min-width: 530px; width: 530px;">
+                    <td style="width: 260px;" width="260">Status</td>
+                    <td>{{summary.state}}</td>
+                </tr>
+                <tr style="display: block; min-width: 530px; width: 530px; background: #c6c6c6a3;">
+                    <td style="width: 260px;" width="260">Health State</td>
+                    <td>{{info.healthState}}</td>
+                </tr>
+                <tr style="display: block; min-width: 530px; width: 530px;">
+                    <td style="width: 260px;" width="260">Uptime</td>
+                    <td>{{summary.uptime}}</td>
+                </tr>
+                <tr style="display: block; min-width: 530px; width: 530px; background: #c6c6c6a3;">
+                    <td style="width: 260px;" width="260">Version</td>
+                    <td>{{info.displayVersion}}</td>
+                </tr>
+                <tr style="display: block; min-width: 530px; width: 530px;">
+                    <td style="width: 260px;" width="260">CRM Master</td>
+                    <td class="emphasis" style="color: #FB8C00;">{{ master }}</td>
+                </tr>
+                <tr style="display: block; min-width: 530px; width: 530px; background: #c6c6c6a3;">
+                    <td style="width: 260px;" width="260">Compression Savings</td>
+                    <td><progress max="100" value="{{summary.compressionSavings.split('%')[0]}}" style="margin-right: 4px;"></progress><span class="progress-label">{{summary.compressionSavings}}</span></td>
+                </tr>
+                <tr style="display: block; min-width: 530px; width: 530px;">
+                    <td style="width: 260px;" width="260">Deduplication Savings</td>
+                    <td><progress max="100" value="{{summary.deduplicationSavings.split('%')[0]}}" style="margin-right: 4px;"></progress><span class="progress-label">{{summary.deduplicationSavings }}</span></td>
+                </tr>
+                <tr style="display: block; min-width: 530px; width: 530px; background: #c6c6c6a3;">
+                    <td style="width: 260px;" width="260">Node Failures Tolerable</td>
+                    <td>{{summary.resiliencyInfo.nodeFailuresTolerable}}</td>
+                </tr>
+                <tr style="display: block; min-width: 530px; width: 530px;">
+                    <td style="width: 260px;" width="260">Caching Device Failures Tolerable</td>
+                    <td>{{summary.resiliencyInfo.cachingDeviceFailuresTolerable}}</td>
+                </tr>
+                <tr style="display: block; min-width: 530px; width: 530px; background: #c6c6c6a3;">
+                    <td style="width: 260px;" width="260">Persistent Device Failures Tolerable</td>
+                    <td>{{summary.resiliencyInfo.persistentDeviceFailuresTolerable}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row" style="width: 100%; padding: 4px; font-size: 14px;">
+        <h1 class="section--heading" style="margin-bottom: 5px; font-size: 18px; color: #2786D9; text-shadow: 0px 1px rgba(0, 0, 0, 0.2);">CAPACITY AND REPLICATION</h1>
+    </div>
+    <div class="row" style="width: 100%; padding: 4px; font-size: 14px;">
+        <table cellspacing="0" cellpadding="5" style="border: none;">
+            <tbody>
+                <tr style="display: block; min-width: 530px; width: 530px; background: #c6c6c6a3;">
+                    <td style="width: 260px;" width="260">Free Capacity</td>
+                    <td>{{summary.freeCapacity}}</td>
+                </tr>
+                <tr style="display: block; min-width: 530px; width: 530px;">
+                    <td style="width: 260px;" width="260">Total Capacity</td>
+                    <td>{{summary.totalCapacity}}</td>
+                </tr>
+                <tr style="display: block; min-width: 530px; width: 530px; background: #c6c6c6a3;">
+                    <td style="width: 260px;" width="260">Total Savings</td>
+                    <td><progress max="100" value="{{summary.totalSavings.split('%')[0]}}" style="margin-right: 4px;"></progress><span class="progress-label">{{summary.totalSavings}}</span></td>
+                </tr>
+                <tr style="display: block; min-width: 530px; width: 530px;">
+                    <td style="width: 260px;" width="260">Used Capacity</td>
+                    <td>{{summary.usedCapacity}}</td>
+                </tr>
+                <tr style="display: block; min-width: 530px; width: 530px; background: #c6c6c6a3;">
+                    <td style="width: 260px;" width="260">Data Replication Compliance</td>
+                    <td>{{summary.dataReplicationCompliance}}</td>
+                </tr>
+                <tr style="display: block; min-width: 530px; width: 530px;">
+                    <td style="width: 260px;" width="260">Data Replication Factor</td>
+                    <td>{{summary.dataReplicationFactor}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row" style="width: 100%; padding: 4px; font-size: 14px;">
+        <h1 class="section--heading" style="margin-bottom: 5px; font-size: 18px; color: #2786D9; text-shadow: 0px 1px rgba(0, 0, 0, 0.2);">REBALANCE STATUS</h1>
+    </div>
+    <div class="row" style="width: 100%; padding: 4px; font-size: 14px;">
+        <table cellspacing="0" cellpadding="5" style="border: none;">
+            <tbody>
+                <tr style="display: block; min-width: 530px; width: 530px; background: #c6c6c6a3;">
+                    <td style="width: 260px;" width="260">Percent Complete</td>
+                    <td>{{rebalance.rebalanceStatus.percentComplete}}</td>
+                </tr>
+                <tr style="display: block; min-width: 530px; width: 530px;">
+                    <td style="width: 260px;" width="260">State</td>
+                    <td>{{rebalance.rebalanceStatus.rebalanceState}}</td>
+                </tr>
+                <tr style="display: block; min-width: 530px; width: 530px; background: #c6c6c6a3;">
+                    <td style="width: 260px;" width="260">Enabled</td>
+                    <td>{{rebalance.rebalanceEnabled}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+---
+
+# =============================================================================
+# PLAY - Collect Cluster Info from HX (runs on HX Cluster)
+# -----------------------------------------------------------------------------
+
+- name: Get HX CRM Masters
+  hosts: hxclusters
+  gather_facts: no
+  become: no
+
+  tasks:
+
+    - name: Get storage summary
+      shell: stcli cluster storage-summary
+      no_log: true
+      register: storage_sum_results
+
+    - name: Convert storage summary to dictionary variable
+      set_fact:
+        storage_sum: "{{ storage_sum_results.stdout | from_yaml }}"
+    
+    - name: Get Cluster health and version
+      shell: stcli cluster info --summary | grep 'healthState\|displayVersion'
+      no_log: true
+      register: info_results
+
+    - name: Convert cluster info to dictionary variable
+      set_fact:
+        info: "{{ info_results.stdout | from_yaml }}"
+
+    - name: Get current CRM master
+      shell: sysmtool --ns node --cmd info | grep -A 10 "Node Details" | grep UUID
+      no_log: true
+      register: crm_master_results
+
+    - name: Convert CRM master to dictionary variable
+      set_fact:
+        crm_master: "{{ crm_master_results.stdout | from_yaml }}"
+
+    - name: Get node list
+      shell: stcli node list --summary | sed s'/^-\{8,\}/SPLITHERE/g'
+      no_log: true
+      register: node_list_results
+
+    - name: Convert node list to dictionary variable
+      set_fact:
+        node_list: "{{ node_list|default([]) + [item  | from_yaml] }}"
+      loop: "{{ node_list_results.stdout.split('SPLITHERE')}}"
+      no_log: true
+      when: item != ""
+
+    - name: Get rebalance status
+      shell: stcli rebalance status
+      no_log: true
+      register: rebalance_results
+
+    - name: Convert rebalance to dictionary variable
+      set_fact:
+        rebalance: "{{ rebalance_results.stdout | from_yaml }}"
+
+    - name: Get master node details
+      set_fact:
+        master_node: "{{ node.host.name }}"
+      loop: "{{ node_list }}"
+      loop_control:
+        loop_var: node
+        label: "Checking if {{ node.host.name }} is master"
+      when: node.pNode.about.instanceUuid == crm_master.UUID
+
+    - name: Email report
+      mail:
+        host: "{{ mail_server }}"
+        port: "{{ mail_port }}"
+        secure: never
+        subtype: html
+        charset: utf-8
+        to: "{{ email_address }}"
+        from: wwdc-labadmins@cisco.com (Austin Lab)
+        subject: "HX Cluster Report: {{ lookup('pipe','date \"+%m/%d/%Y %H:%M:%S\"') }}"
+        body: "{{ lookup('template', 'templates/email_inline.html') }}"
+        timeout: 60
+      vars:
+        summary: "{{ storage_sum }}"
+        info: " {{ info }}"
+        master: "{{ master_node }}"
+        rebalance: "{{ rebalance }}"
+      delegate_to: localhost
+      loop: "{{ report_recipients }}"
+      loop_control:
+        loop_var: email_address
