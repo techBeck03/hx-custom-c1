@@ -121,4 +121,7 @@ Please follow the guide below to prepare your host for running this script.
    `docker run --rm -it hx-report`
 
 
+## Example Report
+![Example Report](/docs/img/example_report.png?raw=true)
+
 ### Please report any issues to this git repository and not to the author directly.
