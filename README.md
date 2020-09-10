@@ -28,7 +28,7 @@ Please follow the guide below to prepare your host for running this script.
    
    `cp inventory.example.yml inventory.yml`
 
-4. Modify the inventory file with your cluster info (passwords will be covered in a coming step)
+4. Modify the inventory file with your cluster info (**passwords will be covered in the next step**)
    
    ```yaml
    all:
@@ -57,8 +57,9 @@ Please follow the guide below to prepare your host for running this script.
 
    ```
    docker run --rm -it -v $PWD/vault_pass:/app/vault_pass salt
+   ```
    
-   Choose a hyperflex cluster from your inventory file and enter the password at the command prompt shown below
+   Choose a hyperflex cluster from your inventory file and enter the **password** at the command prompt shown below
    
    ```
    Please enter the password to encrypt
