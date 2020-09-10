@@ -1,5 +1,6 @@
 mail_server: mail.example.com
 mail_port: 25
-report_recipients:
+mail_from_address: sender@example.com (Lab Reporting)
+mail_report_recipients:
   - you@example.com
   - someoneelse@example.com

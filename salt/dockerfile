@@ -1,0 +1,8 @@
+FROM python:slim-buster
+
+RUN pip install ansible
+
+COPY . /app
+WORKDIR /app
+
+CMD python /app/createPassword.py

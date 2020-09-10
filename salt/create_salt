@@ -1,0 +1,7 @@
+Without building
+docker run --rm -it -v $PWD/createPassword.py:/app/createPassword.py -v $PWD/vault_pass:/app/vault_pass python:slim-buster bash -c "pip install ansible && python /app/createPassword.py"
+
+With building
+docker build -t salt .
+cd ../
+docker run --rm -it -v $PWD/vault_pass:/app/vault_pass salt

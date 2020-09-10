@@ -76,8 +76,8 @@
         subtype: html
         charset: utf-8
         to: "{{ email_address }}"
-        from: wwdc-labadmins@cisco.com (Austin Lab)
-        subject: "HX Cluster Report: {{ lookup('pipe','date \"+%m/%d/%Y %H:%M:%S\"') }}"
+        from: " {{ mail_from_address }}"
+        subject: "HX Cluster Report ({{ summary.name }}): {{ lookup('pipe','date \"+%m/%d/%Y %H:%M:%S\"') }}"
         body: "{{ lookup('template', 'templates/email_inline.html') }}"
         timeout: 60
       vars:
@@ -86,6 +86,6 @@
         master: "{{ master_node }}"
         rebalance: "{{ rebalance }}"
       delegate_to: localhost
-      loop: "{{ report_recipients }}"
+      loop: "{{ mail_report_recipients }}"
       loop_control:
         loop_var: email_address

@@ -1,0 +1,12 @@
+all:
+  vars:
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o userknownhostsfile=/dev/null'
+  children:
+    hxclusters:
+      hosts:
+        cm-1:
+          ansible_use: admin
+          ansible_ssh_pass: PASTE ENCRYPTED PASSWORD HERE
+        cm-2:
+          ansible_use: admin
+          ansible_ssh_pass: PASTE ENCRYPTED PASSWORD HERE

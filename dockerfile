@@ -7,4 +7,4 @@ RUN ansible-galaxy collection install cisco.intersight
 COPY . /app
 WORKDIR /app
 
-CMD ansible-playbook -i inventory hx.yml --ask-vault-pass
+CMD ansible-playbook -i inventory.yml --vault-id vault_pass hx.yml 
