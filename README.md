@@ -38,6 +38,7 @@ Please follow the guide below to prepare your host for running this script.
    all:
    vars:
      ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o userknownhostsfile=/dev/null'
+     connection_type: ssh_key # valid choices are 'ssh_key' | 'password'
    children:
      hxclusters:
        hosts:
@@ -46,7 +47,7 @@ Please follow the guide below to prepare your host for running this script.
          cm-2:
            ansible_use: admin
    ```
-   `cm-1` and `cm-2` in the code above are the fqdn or IP address of the CRM master for a given hyperflex cluster.  Only one entry is needed per cluster.
+   `cm-1` and `cm-2` in the code above are the fqdn or IP address of the CRM master for a given hyperflex cluster.  Only one entry is needed per cluster.  The `connection_type` value will be covered in more detail in a later step.
 
 4. Copy the example `group_vars` file
 

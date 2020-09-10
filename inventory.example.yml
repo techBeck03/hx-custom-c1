@@ -1,6 +1,7 @@
 all:
   vars:
     ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o userknownhostsfile=/dev/null'
+    connection_type: ssh_key # valid choices are 'ssh_key' | 'password'
   children:
     hxclusters:
       hosts:

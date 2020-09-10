@@ -4,13 +4,23 @@
 # PLAY - Collect Cluster Info from HX (runs on HX Cluster)
 # -----------------------------------------------------------------------------
 
+- name: Decrypt SSH Key
+  hosts: localhost
+  gather_facts: no
+  become: no
+  connection: local
+
+  tasks:
+    - name: Decrypt ssh key file
+      shell: ansible-vault decrypt --vault-password-file vault_pass ssh.key
+      when: connection_type == 'ssh_key'
+
 - name: Get HX CRM Masters
   hosts: hxclusters
   gather_facts: no
   become: no
 
   tasks:
-
     - name: Get storage summary
       shell: stcli cluster storage-summary
       no_log: true
