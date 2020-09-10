@@ -32,7 +32,7 @@ Please follow the guide below to prepare your host for running this script.
    
    `cp inventory.example.yml inventory.yml`
 
-3. Modify the inventory file with your cluster info (**passwords will be covered in the next step**)
+3. Modify the inventory file with your cluster info
    
    ```yaml
    all:
