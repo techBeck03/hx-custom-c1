@@ -21,4 +21,4 @@ The following steps need to be applied to **every controller vm** in your HX clu
    
    `cat "pasteYourPublicKeyHere" >> ~/.ssh/authorized_keys`
 
-Return to the [Building and Running the Container](../README.md/#building-and-running-the-container) section of the `README` to complete the setup
+Return to the [Building and Running the Container](../README.md/#building-and-running-the-container) section of the **README** to complete the setup

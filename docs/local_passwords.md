@@ -54,3 +54,5 @@ This guide walks through how to create encrypted passwords to use in your ansibl
    ```
 
 **Repeat the above for each remaining hyperflex cluster in your inventory**
+
+Return to the [Building and Running the Container](../README.md/#building-and-running-the-container) section of the **README** to complete the setup
