@@ -14,16 +14,23 @@ Please follow the guide below to prepare your host for running this script.
 ## Setup
 
 1. Clone this repo using the following command
-   `git clone https://github.com/techBeck03/hx-custom-c1.git`
+   
+   ```
+   git clone https://github.com/techBeck03/hx-custom-c1.git
+   cd hx-custom-c1
+   ```
 
 2. Create vault password file to be used for encypting sensitive data
+   
    `echo -n "supersecretpassword" > vault_pass`
 
 3. Copy the example inventory file to `inventory.yml`
+   
    `cp inventory.example.yml inventory.yml`
 
 4. Modify the inventory file with your cluster info (passwords will be covered in a coming step)
-   ```yaml
+   
+  ```yaml
   all:
   vars:
     ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o userknownhostsfile=/dev/null'
@@ -38,6 +45,8 @@ Please follow the guide below to prepare your host for running this script.
           ansible_ssh_pass: PASTE ENCRYPTED PASSWORD HERE
    ```
 
+5. Create an encrypted password for each cluster defined in your inventory above
+   
 
 Issue the command below to store an encrypted copy of the HX password using Ansible's built-in vault:
 
