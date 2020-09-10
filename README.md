@@ -96,7 +96,7 @@ Please follow the guide below to prepare your host for running this script.
            ansible_ssh_pass: PASTE ENCRYPTED PASSWORD HERE
    ```
 
-   Repeat the above for each remaining hyperflex cluster in your inventory
+   > **Repeat the above for each remaining hyperflex cluster in your inventory**
 
 6. Copy the example `group_vars` file
 
@@ -121,4 +121,4 @@ Please follow the guide below to prepare your host for running this script.
    `docker run --rm -it hx-report`
 
 
-Please open any issues in this git repository
+### Please report any issues to this git repository and not to the author directly.
