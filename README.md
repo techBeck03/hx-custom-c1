@@ -13,7 +13,6 @@ Please follow the guide below to prepare your host for running this script.
 
 ## Setup
 
-
 ### Cloning the repo
 
 1. Clone this repo using the following command

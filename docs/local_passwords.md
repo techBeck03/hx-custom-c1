@@ -53,4 +53,4 @@ This guide walks through how to create encrypted passwords to use in your ansibl
            ansible_ssh_pass: PASTE ENCRYPTED PASSWORD HERE
    ```
 
-> **Repeat the above for each remaining hyperflex cluster in your inventory**
+**Repeat the above for each remaining hyperflex cluster in your inventory**
