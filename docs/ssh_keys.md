@@ -1,9 +1,9 @@
 # Creating SSH Keys (if not already configured)
 
-By default the storage controller VMs do not have a trusted public key defined for the `admin` account.  You will need to SSH to each controller VM to using username and password initially to run the steps below.
+By default the storage controller VMs do not have a trusted public key defined for the `admin` account.  You will need to SSH to each controller VM using username and password initially to run the steps below.
 
 ## Prerequisites
-- ssh public key (creating a key is not described in this guide)
+- ssh public/private key (creating a key is not covered in this guide)
 
 ## Setting up the Keys
 
