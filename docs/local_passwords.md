@@ -57,6 +57,7 @@ This guide walks through how to create encrypted passwords to use in your ansibl
 **Repeat the above for each remaining hyperflex cluster in your inventory**
 
 4. Change the `connection_type` in `inventory.yml` to `password`
+   
    ```
    all:
    vars:
