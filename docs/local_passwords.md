@@ -18,7 +18,7 @@ This guide walks through how to create encrypted passwords to use in your ansibl
    
 2. Choose a hyperflex cluster from your inventory file and enter the **password** at the command prompt shown below
    
-   ```
+   ```yaml
    Please enter the password to encrypt
    Password: 
    secret: !vault |
@@ -32,7 +32,7 @@ This guide walks through how to create encrypted passwords to use in your ansibl
 
 3. Copy everything to the right of `secret:` in your output and paste in your `inventory.yml` file for the cluster whose password you entered
 
-   ```
+   ```yaml
    all:
    vars:
      ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o userknownhostsfile=/dev/null'
@@ -41,7 +41,7 @@ This guide walks through how to create encrypted passwords to use in your ansibl
      hxclusters:
        hosts:
          cm-1:
-           ansible_use: admin
+           ansible_user: admin
            ansible_ssh_pass: !vault |
              $ANSIBLE_VAULT;1.1;AES256
              65333737356439336430643239366361666336396539616632346630386663306161396164376162
@@ -58,7 +58,7 @@ This guide walks through how to create encrypted passwords to use in your ansibl
 
 4. Change the `connection_type` in `inventory.yml` to `password`
    
-   ```
+   ```yaml
    all:
    vars:
      ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o userknownhostsfile=/dev/null'
@@ -67,7 +67,7 @@ This guide walks through how to create encrypted passwords to use in your ansibl
      hxclusters:
        hosts:
          cm-1:
-           ansible_use: admin
+           ansible_user: admin
            ansible_ssh_pass: !vault |
              $ANSIBLE_VAULT;1.1;AES256
              65333737356439336430643239366361666336396539616632346630386663306161396164376162
@@ -76,7 +76,7 @@ This guide walks through how to create encrypted passwords to use in your ansibl
              3861346264303433330a333133363066353034643661383534626236653632336230663330336363
              6438
          cm-2:
-           ansible_use: admin
+           ansible_user: admin
            ansible_ssh_pass: !vault |
              $ANSIBLE_VAULT;1.1;AES256
              65333737356439336430643239366361666336396539616632346630386663306161396164376162

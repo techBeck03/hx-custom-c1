@@ -56,11 +56,9 @@ The following steps explain how to create an encrypted copy of your private key 
        hxclusters:
          hosts:
            cm-1:
-             ansible_use: admin
-             ansible_ssh_pass: PASTE ENCRYPTED PASSWORD HERE
+             ansible_user: admin
            cm-2:
-             ansible_use: admin
-             ansible_ssh_pass: PASTE ENCRYPTED PASSWORD HERE
+             ansible_user: admin
     ```
 
 2. Add your ssh key file to the inventory file.  The below example assumes the key is the same for all clusters.  If that's not the case for your environment then repeat the steps in the **Encrypting the SSH key** section for each key and define the `ansible_ssh_private_key_file` within each `host`
@@ -75,11 +73,9 @@ The following steps explain how to create an encrypted copy of your private key 
        hxclusters:
          hosts:
            cm-1:
-             ansible_use: admin
-             ansible_ssh_pass: PASTE ENCRYPTED PASSWORD HERE
+             ansible_user: admin
            cm-2:
-             ansible_use: admin
-             ansible_ssh_pass: PASTE ENCRYPTED PASSWORD HERE
+             ansible_user: admin
     ```
    
 Return to the [Building and Running the Container](../README.md/#building-and-running-the-container) section of the **README** to complete the setup
